@@ -1,6 +1,6 @@
 <h3 align="center">
   <p align="center">
-    <img src="https://img.shields.io/badge/WLCM%20TO%20-NAYAN%20MEDIA%20DOWNLOADER-red?colorA=%#DAF7A6&colorB=%23017e40&style=flat-square">
+    <img src="https://img.shields.io/badge/WLCM%20TO%20-NAYAN%20MEDIA%20DOWNLOADER-red?colorA=%DAF7A6&colorB=%23017e40&style=flat-square">
   </p>
 </h3>
 
