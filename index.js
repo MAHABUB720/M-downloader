@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
-const request = require('request');
+const rp = require('request-promise');
 
-function tikdown(url, callback) {
+async function tikdown(url) {
     const headers = {
         'authority': 'savetik.co',
         'accept': '*/*',
@@ -26,38 +26,29 @@ function tikdown(url, callback) {
         url: 'https://savetik.co/api/ajaxSearch',
         method: 'POST',
         headers: headers,
-        body: dataString
+        body: dataString,
+        json: true // Automatically parses the JSON string in the response
     };
 
-    request(options, (error, response, body) => {
-        if (error) {
-            return callback(error);
+    try {
+        const imran = await rp(options);
+        const html = imran.data;
+
+        if (!html) {
+            throw new Error('No HTML data found in response');
         }
 
-        if (response.statusCode !== 200) {
-            return callback(new Error(`Unexpected status code: ${response.statusCode}`));
+        const $ = cheerio.load(html);
+        const downloadLink = $(".tik-right .dl-action a").attr("href");
+
+        if (!downloadLink) {
+            throw new Error('Download link not found');
         }
 
-        try {
-            const imran = JSON.parse(body);
-            const html = imran.data;
-
-            if (!html) {
-                return callback(new Error('No HTML data found in response'));
-            }
-
-            const $ = cheerio.load(html);
-            const downloadLink = $(".tik-right .dl-action a").attr("href");
-
-            if (!downloadLink) {
-                return callback(new Error('Download link not found'));
-            }
-
-            callback(null, { Author: "Imran", data: downloadLink });
-        } catch (e) {
-            callback(new Error(`Failed to parse response: ${e.message}`));
-        }
-    });
+        return { Author: "Imran", data: downloadLink };
+    } catch (error) {
+        throw new Error(`Failed to retrieve or parse response: ${error.message}`);
+    }
 }
 
 module.exports = tikdown;
