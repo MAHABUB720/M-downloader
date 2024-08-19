@@ -46,10 +46,7 @@ function tikdown(videoUrl, callback) {
 
                 callback(null, { 
                     author: "Abir Islam", 
-                    data: { 
-                        maindata: maindata, 
-                        author: "Abir Islam" 
-                    } 
+                    maindata: maindata 
                 });
             } catch (e) {
                 callback(e, null);
