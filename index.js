@@ -1,7 +1,7 @@
-const request = require('request');
 const cheerio = require('cheerio');
+const request = require('request');
 
-function tikdown(videoUrl, callback) {
+function tikdown(url, callback) {
     const headers = {
         'authority': 'savetik.co',
         'accept': '*/*',
@@ -20,7 +20,7 @@ function tikdown(videoUrl, callback) {
         'x-requested-with': 'XMLHttpRequest'
     };
 
-    const dataString = `q=${encodeURIComponent(videoUrl)}&is_from_webapp=1&sender_device=mobile&sender_web_id=7404774559176721927&lang=en`;
+    const dataString = `q=${encodeURIComponent(url)}&is_from_webapp=1&sender_device=mobile&sender_web_id=7404774559176721927&lang=en`;
 
     const options = {
         url: 'https://savetik.co/api/ajaxSearch',
@@ -31,28 +31,31 @@ function tikdown(videoUrl, callback) {
 
     request(options, (error, response, body) => {
         if (error) {
-            return callback({ error: 'Failed to fetch data from savetik.co' });
+            return callback(error);
         }
 
-        if (response.statusCode === 200) {
-            try {
-                const imran = JSON.parse(body);
-                const x = imran.data;
+        if (response.statusCode !== 200) {
+            return callback(new Error(`Unexpected status code: ${response.statusCode}`));
+        }
 
-                const $ = cheerio.load(x);
-                const filter1 = $(".tik-right");
-                const maindata = filter1.find(".dl-action a").attr("href");
+        try {
+            const imran = JSON.parse(body);
+            const html = imran.data;
 
-                if (maindata) {
-                    callback(null, { author: "Abir", data: maindata });
-                } else {
-                    callback({ error: 'Download link not found' });
-                }
-            } catch (e) {
-                callback({ error: 'Error parsing response' });
+            if (!html) {
+                return callback(new Error('No HTML data found in response'));
             }
-        } else {
-            callback({ error: `Unexpected response code: ${response.statusCode}` });
+
+            const $ = cheerio.load(html);
+            const downloadLink = $(".tik-right .dl-action a").attr("href");
+
+            if (!downloadLink) {
+                return callback(new Error('Download link not found'));
+            }
+
+            callback(null, { Author: "Imran", data: downloadLink });
+        } catch (e) {
+            callback(new Error(`Failed to parse response: ${e.message}`));
         }
     });
 }
