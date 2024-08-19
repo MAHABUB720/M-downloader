@@ -37,17 +37,18 @@ function tikdown(videoUrl, callback) {
 
         if (response.statusCode === 200) {
             try {
-                const imran = JSON.parse(body);
-                const x = imran.data;
+                const jsonResponse = JSON.parse(body);
+                const x = jsonResponse.data;
 
                 const $ = cheerio.load(x);
                 const filter1 = $(".tik-right");
                 const maindata = filter1.find(".dl-action").find("a").attr("href");
 
-                callback(null, { 
-                    author: "Abir Islam", 
-                    maindata: maindata 
-                });
+                if (maindata) {
+                    callback(null, { author: "Abir", data: maindata });
+                } else {
+                    callback(new Error('No download link found'), null);
+                }
             } catch (e) {
                 callback(e, null);
             }
