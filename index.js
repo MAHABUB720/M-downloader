@@ -20,7 +20,6 @@ function tikdown(videoUrl, callback) {
         'x-requested-with': 'XMLHttpRequest'
     };
 
-    // Encode the video URL properly
     const dataString = `q=${encodeURIComponent(videoUrl)}&is_from_webapp=1&sender_device=mobile&sender_web_id=7404774559176721927&lang=en`;
 
     const options = {
@@ -32,28 +31,28 @@ function tikdown(videoUrl, callback) {
 
     request(options, (error, response, body) => {
         if (error) {
-            return callback(error, null);
+            return callback({ error: 'Failed to fetch data from savetik.co' });
         }
 
         if (response.statusCode === 200) {
             try {
-                const jsonResponse = JSON.parse(body);
-                const x = jsonResponse.data;
+                const imran = JSON.parse(body);
+                const x = imran.data;
 
                 const $ = cheerio.load(x);
                 const filter1 = $(".tik-right");
-                const maindata = filter1.find(".dl-action").find("a").attr("href");
+                const maindata = filter1.find(".dl-action a").attr("href");
 
                 if (maindata) {
                     callback(null, { author: "Abir", data: maindata });
                 } else {
-                    callback(new Error('No download link found'), null);
+                    callback({ error: 'Download link not found' });
                 }
             } catch (e) {
-                callback(e, null);
+                callback({ error: 'Error parsing response' });
             }
         } else {
-            callback(new Error(`Unexpected response code: ${response.statusCode}`), null);
+            callback({ error: `Unexpected response code: ${response.statusCode}` });
         }
     });
 }
