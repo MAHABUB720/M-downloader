@@ -14,7 +14,7 @@
 > npm i abir-downloader
 ```
 
-## Example (fb & insta)
+## Example (tikdown)
 ```js
 const tikdown = require('abir-downloader');
 
