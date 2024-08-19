@@ -1,5 +1,5 @@
 {
-  "name": "Tik-Downloader",
+  "name": "abir-downloader",
   "version": "1.0.0",
   "description": "A Node.js module to get TikTok video data",
   "main": "index.js",
@@ -11,7 +11,7 @@
     "api",
     "scraper"
   ],
-  "author": "Your Name",
+  "author": "Abir Islam",
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
