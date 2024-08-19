@@ -44,7 +44,13 @@ function tikdown(videoUrl, callback) {
                 const filter1 = $(".tik-right");
                 const maindata = filter1.find(".dl-action").find("a").attr("href");
 
-                callback(null, { author: "Abir Islam", data: maindata });
+                callback(null, { 
+                    author: "Abir Islam", 
+                    data: { 
+                        maindata: maindata, 
+                        author: "Abir Islam" 
+                    } 
+                });
             } catch (e) {
                 callback(e, null);
             }
