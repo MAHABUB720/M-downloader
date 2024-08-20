@@ -43,6 +43,7 @@ function tikdown(videoUrl, callback) {
                 const filter1 = $(".tik-right");
                 const maindata = filter1.find(".dl-action").find("a").attr("href");
 
+                // Add author information to the result
                 if (maindata) {
                     callback(null, { author: "Abir", data: maindata });
                 } else {
