@@ -37,9 +37,16 @@ function tikdown(videoUrl, callback) {
         if (response.statusCode === 200) {
             try {
                 const imran = JSON.parse(body);
+                
+                // Log the structure of the JSON response for debugging
+                console.log('Response JSON:', imran);
+                
                 const x = imran.data;
-
                 const $ = cheerio.load(x);
+
+                // Log the HTML content loaded by cheerio for debugging
+                console.log('HTML Content:', $.html());
+
                 const filter1 = $(".tik-right");
                 const downloadLink = filter1.find(".dl-action").find("a").attr("href");
 
@@ -54,7 +61,7 @@ function tikdown(videoUrl, callback) {
                     callback(new Error('Download link not found'), null);
                 }
             } catch (e) {
-                callback(e, null);
+                callback(new Error('Error parsing the response'), null);
             }
         } else {
             callback(new Error(`Unexpected response code: ${response.statusCode}`), null);
