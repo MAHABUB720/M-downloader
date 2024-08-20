@@ -39,11 +39,16 @@ function tikdown(videoUrl, callback) {
                 const imran = JSON.parse(body);
                 const x = imran.data;
 
+                // Debugging: Log the response body to check the structure
+                console.log("Response body:", x);
+
                 const $ = cheerio.load(x);
                 const filter1 = $(".tik-right");
                 const maindata = filter1.find(".dl-action").find("a").attr("href");
 
-                // Add author information to the result
+                // Debugging: Log the extracted download link
+                console.log("Extracted download link:", maindata);
+
                 if (maindata) {
                     callback(null, { author: "Abir", data: maindata });
                 } else {
