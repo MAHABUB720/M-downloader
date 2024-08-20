@@ -34,5 +34,5 @@ tikdown(videoUrl, (error, result) => {
 {
 author: 'Abir Islam',
 contact: 'https://www.facebook.com/profile.php?id=100077355169871',
-maindata: download link }
+data: download link }
 ```
