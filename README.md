@@ -18,11 +18,13 @@
 ```js
 const tikdown = require('abir-downloader');
 
-tikdown((error, data) => {
+const videoUrl = 'https://www.tiktok.com/@princess.mahabuba/video/7386469620259114248';
+
+tikdown(videoUrl, (error, result) => {
     if (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error:', error);
     } else {
-        console.log('TikTok data:', data);
+        console.log('Download Link:', result.data);
     }
 });
 
