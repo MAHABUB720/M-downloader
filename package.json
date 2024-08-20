@@ -1,6 +1,6 @@
 {
   "name": "abir-downloader-api",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Fetch Url Downloads From tiktok",
   "main": "index.js",
   "scripts": {
