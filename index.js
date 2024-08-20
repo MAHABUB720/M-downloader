@@ -1,7 +1,7 @@
+const axios = require('axios');
 const cheerio = require('cheerio');
-const rp = require('request-promise');
 
-async function tikdown(url) {
+async function tikdown(videoUrl) {
     const headers = {
         'authority': 'savetik.co',
         'accept': '*/*',
@@ -20,34 +20,33 @@ async function tikdown(url) {
         'x-requested-with': 'XMLHttpRequest'
     };
 
-    const dataString = `q=${encodeURIComponent(url)}&is_from_webapp=1&sender_device=mobile&sender_web_id=7404774559176721927&lang=en`;
-
-    const options = {
-        url: 'https://savetik.co/api/ajaxSearch',
-        method: 'POST',
-        headers: headers,
-        body: dataString,
-        json: true // Automatically parses the JSON string in the response
-    };
+    // Encode the video URL properly
+    const dataString = `q=${encodeURIComponent(videoUrl)}&is_from_webapp=1&sender_device=mobile&sender_web_id=7404774559176721927&lang=en`;
 
     try {
-        const imran = await rp(options);
-        const html = imran.data;
+        const response = await axios.post('https://savetik.co/api/ajaxSearch', dataString, { headers });
+        
+        if (response.status === 200) {
+            const imran = response.data;
+            const x = imran.data;
 
-        if (!html) {
-            throw new Error('No HTML data found in response');
+            if (!x) {
+                throw new Error('No data found in response');
+            }
+
+            const $ = cheerio.load(x);
+            const maindata = $(".tik-right .dl-action a").attr("href");
+
+            if (!maindata) {
+                throw new Error('Download link not found');
+            }
+
+            return { author: "Imran", data: maindata };
+        } else {
+            throw new Error(`Unexpected response code: ${response.status}`);
         }
-
-        const $ = cheerio.load(html);
-        const downloadLink = $(".tik-right .dl-action a").attr("href");
-
-        if (!downloadLink) {
-            throw new Error('Download link not found');
-        }
-
-        return { Author: "Imran", data: downloadLink };
     } catch (error) {
-        throw new Error(`Failed to retrieve or parse response: ${error.message}`);
+        throw new Error(`Failed to fetch data: ${error.message}`);
     }
 }
 
