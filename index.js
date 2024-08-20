@@ -39,18 +39,17 @@ function tikdown(videoUrl, callback) {
                 const imran = JSON.parse(body);
                 const x = imran.data;
 
-                // Debugging: Log the response body to check the structure
-                console.log("Response body:", x);
-
                 const $ = cheerio.load(x);
                 const filter1 = $(".tik-right");
-                const maindata = filter1.find(".dl-action").find("a").attr("href");
+                const downloadLink = filter1.find(".dl-action").find("a").attr("href");
 
-                // Debugging: Log the extracted download link
-                console.log("Extracted download link:", maindata);
-
-                if (maindata) {
-                    callback(null, { author: "Abir", data: maindata });
+                // Return author, contact, and download link
+                if (downloadLink) {
+                    callback(null, { 
+                        author: "Abir", 
+                        contact: "876", 
+                        downloadLink: downloadLink 
+                    });
                 } else {
                     callback(new Error('Download link not found'), null);
                 }
