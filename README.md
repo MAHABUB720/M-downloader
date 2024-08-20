@@ -30,8 +30,8 @@ tikdown(videoUrl, (error, result) => {
 
 ```
 ## Output Example (tikdown)
-```js
-{ author: 'Abir Islam',
+
+{
+author: 'Abir Islam',
 contact: 'https://www.facebook.com/profile.php?id=100077355169871',
 maindata: download link }
-```
