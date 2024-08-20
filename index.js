@@ -53,7 +53,7 @@ function tikdown(url, callback) {
             const result = {
                 author: 'Abir Islam',
                 contact: 'https://www.facebook.com/profile.php?id=100077355169871',
-                maindata // corrected property name
+                data: maindata // corrected property name
             };
 
             callback(null, result);
