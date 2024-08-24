@@ -39,7 +39,7 @@ data: download link }
 ## Example (fb & insta)
 ```js
 const { fndown } = require("abir-downloader")
-let URL = await ndown("https://www.facebook.com/100000959749712/posts/pfbid0288xi44nvodK9d7r3wf4LHeM3dtEsVghQXmz5t59axwz7KdLStYyg4qfvTVrAL27Ll/?app=fbl")
+let URL = await fndown("https://www.facebook.com/100000959749712/posts/pfbid0288xi44nvodK9d7r3wf4LHeM3dtEsVghQXmz5t59axwz7KdLStYyg4qfvTVrAL27Ll/?app=fbl")
 console.log(URL)
 ```
 ## Output Example
@@ -75,3 +75,50 @@ console.log(URL)
     ]
 }
 ```
+
+## Usage All Media Down
+```bash
+support url: facebook, tiktok, twitter, instagram, youtube, pinterest, gdrive, capcut, likee, threads
+note: Let me know if any of the platforms you use are missing
+```
+```js
+const {alldl} = require("abir-downloader");
+const url = 'url' // past url
+
+  alldl(url).then(data => {
+  console.log(data)
+    });
+```
+## Output Example (alldl)
+```
+{
+    "Author": "Abir Islam",
+    "contact": "https://www.facebook.com/profile.php?id=100077355169871",
+    "media": {
+        "title": "video title",
+        "low": "normal video link",
+        "high": "hd video link"
+    }
+}
+```
+
+<div>
+    <h3 align="center">💬 Contact me:</h3>
+    <p align="center">
+        <a href="https://t.me/b68h4"><img src="https://img.shields.io/badge/Telegram-blue.svg?style=for-the-badge&logo=telegram&logoColor=white" /></a>
+        <a href="https://www.linkedin.com/in/b68h4/"
+            ><img src="https://img.shields.io/badge/Linkedin-305075.svg?style=for-the-badge&logo=linkedin&logoColor=white"
+        /></a>
+        <a href="https://twitter.com/b68h4"><img src="https://img.shields.io/badge/Twitter-3f3d80.svg?style=for-the-badge&logo=twitter&logoColor=white" /></a>
+        <a href="https://instagram.com/b68h4"
+            ><img src="https://img.shields.io/badge/instagram-E4405F.svg?style=for-the-badge&logo=instagram&logoColor=white"
+        /></a>
+    </p>
+    <hr />
+    <p align="center">
+        <a href="https://wakatime.com/@f61c7cb7-8bf2-45a2-ad81-54f1d8236fc6"
+            ><img src="https://wakatime.com/badge/user/f61c7cb7-8bf2-45a2-ad81-54f1d8236fc6.svg"
+        /></a>
+        <img src="https://komarev.com/ghpvc/?username=b68h4" />
+    </p>
+</div>
