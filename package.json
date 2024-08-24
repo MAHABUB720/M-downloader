@@ -1,6 +1,6 @@
 {
   "name": "abir-downloader",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Fetch Url Downloads From tiktok",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,31 @@
     "url": "git+https://github.com/ABIR-ISLAM099/Abir-downloader.git"
   },
   "keywords": [
+    "instagram",
+    "downloader",
+    "media",
+    "link",
+    "tiktok",
+    "tikvm",
+    "video",
+    "fbdownload",
+    "twdown.net",
+    "fbdownload",
+    "download",
+    "facebook",
+    "fbdown",
+    "youtube",
+    "yt download",
+    "Twitter",
+    "gdrive",
+    "drive link",
+    "google drive",
+    "pintarest",
+    "all media download",
+    "media download",
+    "capcut",
+    "likee",
+    "threads",
     "tiktok",
     "api",
     "scraper"
@@ -23,6 +48,7 @@
   "homepage": "https://github.com/ABIR-ISLAM099/Abir-downloader#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
+    "nayan-media-downloader": "^2.4.7",
     "request": "^2.88.2"
   }
 }
