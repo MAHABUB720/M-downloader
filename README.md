@@ -105,20 +105,6 @@ const url = 'url' // past url
 <div>
     <h3 align="center">💬 Contact me:</h3>
     <p align="center">
-        <a href="https://t.me/b68h4"><img src="https://img.shields.io/badge/Telegram-blue.svg?style=for-the-badge&logo=telegram&logoColor=white" /></a>
-        <a href="https://www.linkedin.com/in/b68h4/"
-            ><img src="https://img.shields.io/badge/Linkedin-305075.svg?style=for-the-badge&logo=linkedin&logoColor=white"
-        /></a>
-        <a href="https://twitter.com/b68h4"><img src="https://img.shields.io/badge/Twitter-3f3d80.svg?style=for-the-badge&logo=twitter&logoColor=white" /></a>
-        <a href="https://instagram.com/b68h4"
-            ><img src="https://img.shields.io/badge/instagram-E4405F.svg?style=for-the-badge&logo=instagram&logoColor=white"
-        /></a>
-    </p>
-    <hr />
-    <p align="center">
-        <a href="https://wakatime.com/@f61c7cb7-8bf2-45a2-ad81-54f1d8236fc6"
-            ><img src="https://wakatime.com/badge/user/f61c7cb7-8bf2-45a2-ad81-54f1d8236fc6.svg"
-        /></a>
-        <img src="https://komarev.com/ghpvc/?username=b68h4" />
-    </p>
+        <a href="https://t.me/Abir_Islam099"><img src="https://img.shields.io/badge/Telegram-blue.svg?style=for-the-badge&logo=telegram&logoColor=white" /></a>
+        
 </div>
