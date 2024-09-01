@@ -2,72 +2,77 @@ const cheerio = require('cheerio'),
   request = require('request'),
   ndown = require('nayan-media-downloader'),
   { alldown } = require('nayan-media-downloader')
-function tikdown(_0x9a5331, _0x23c479) {
-  const _0x1383fe = 'q=' + encodeURIComponent(_0x9a5331) + '&lang=en',
-    _0x102caf = {
+
+function tikdown(url, callback) {
+  const query = 'q=' + encodeURIComponent(url) + '&lang=en',
+    options = {
       url: 'https://savetik.co/api/ajaxSearch',
       method: 'POST',
-      headers: _0x56299b,
-      body: _0x1383fe,
+      headers: headers, // Assuming headers is defined elsewhere
+      body: query,
     }
-  request(_0x102caf, function (_0x37a267, _0x4bb304, _0x2bcd52) {
-    if (_0x37a267) {
-      return _0x23c479(_0x37a267, null)
+  
+  request(options, function (error, response, body) {
+    if (error) {
+      return callback(error, null)
     }
-    if (_0x4bb304.statusCode !== 200) {
-      return _0x23c479(
-        new Error('Unexpected status code: ' + _0x4bb304.statusCode),
+    if (response.statusCode !== 200) {
+      return callback(
+        new Error('Unexpected status code: ' + response.statusCode),
         null
       )
     }
     try {
-      const _0x30a856 = JSON.parse(_0x2bcd52)
-      if (typeof _0x30a856.data !== 'string') {
-        return _0x23c479(new Error('Data is not in expected format'), null)
+      const result = JSON.parse(body)
+      if (typeof result.data !== 'string') {
+        return callback(new Error('Data is not in expected format'), null)
       }
-      const _0x4fbf67 = cheerio.load(_0x30a856.data),
-        _0x1bd3f5 = _0x4fbf67('.tik-right .dl-action a').attr('href'),
-        _0x22971f = {
+      const $ = cheerio.load(result.data),
+        downloadLink = $('.tik-right .dl-action a').attr('href'),
+        responseData = {
           author: 'Mahabub Rahman',
           contact: 'https://www.facebook.com/www.xnxx.com.140',
-          data: _0x1bd3f5,
+          data: downloadLink,
         }
-      _0x23c479(null, _0x22971f)
-    } catch (_0x46d4e4) {
-      _0x23c479(_0x46d4e4, null)
+      callback(null, responseData)
+    } catch (error) {
+      callback(error, null)
     }
   })
 }
-async function fndown(_0x3abe1c) {
+
+async function fndown(url) {
   try {
-    const _0xbeebe5 = await ndown(_0x3abe1c)
+    const result = await ndown(url)
     return {
       author: 'Mahabub Rahman',
       contact: 'https://www.facebook.com/www.xnxx.com.140',
-      data: _0xbeebe5.data,
+      data: result.data,
     }
-  } catch (_0x250ff3) {
-    throw new Error('Failed to fetch URL: ' + _0x250ff3.message)
+  } catch (error) {
+    throw new Error('Failed to fetch URL: ' + error.message)
   }
 }
-async function alldl(_0x46dd9d) {
-  if (!_0x46dd9d) {
+
+async function alldl(url) {
+  if (!url) {
     throw new Error('URL is required')
   }
   try {
-    const _0xeba052 = await alldown(_0x46dd9d)
+    const result = await alldown(url)
     return {
       Author: 'Mahabub Rahman',
       devfb: 'https://www.facebook.com/www.xnxx.com.140',
       devwp: 'wa.me/+8801312737981',
-      data: _0xeba052.data,
+      data: result.data,
     }
-  } catch (_0x246da9) {
-    throw new Error(_0x246da9.message)
+  } catch (error) {
+    throw new Error(error.message)
   }
 }
+
 module.exports = {
   tikdown: tikdown,
   fndown: fndown,
   alldl: alldl,
-    }
+}
