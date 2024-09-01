@@ -1,6 +1,6 @@
 {
-  "name": "abir-downloader",
-  "version": "1.2.2",
+  "name": "m-downloader",
+  "version": "1.2.3",
   "description": "Fetch Url Downloads From tiktok",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ABIR-ISLAM099/Abir-downloader.git"
+    "url": "git+https://github.com/MAHABUB720/M-downloader.git"
   },
   "keywords": [
     "instagram",
@@ -40,15 +40,15 @@
     "api",
     "scraper"
   ],
-  "author": "Abir Islam",
+  "author": "Mahabub",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ABIR-ISLAM099/Abir-downloader/issues"
+    "url": "https://github.com/MAHABUB720/M-downloader/issues"
   },
-  "homepage": "https://github.com/ABIR-ISLAM099/Abir-downloader#readme",
+  "homepage": "https://github.com/MAHABUB720/M-downloader#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "nayan-media-downloader": "^2.4.7",
+    "nayan-media-downloader": "^2.4.9",
     "request": "^2.88.2"
   }
 }
