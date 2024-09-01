@@ -72,7 +72,7 @@ async function alldl(url) {
 }
 
 module.exports = {
-  tikdown: tikdown,
-  fndown: fndown,
-  alldl: alldl,
+  tikdown: tikdl,
+  fndown: fndl,
+  alldl: aldl,
 }
