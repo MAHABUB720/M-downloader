@@ -48,7 +48,7 @@
   "homepage": "https://github.com/MAHABUB720/M-downloader#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.13",
-    "nayan-media-downloader": "^2.4.9",
+    "rahad-all-downloader": "^2.4.9",
     "request": "^2.88.3"
   }
 }
